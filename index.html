@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SXFestival 2026 — Berlin · 27–28 June</title>
+  <meta name="description" content="Two days. Four stages. Zero apologies. SXFestival Berlin 2026 — pleasure, culture and technology at Heeresbäckerei, 27–28 June." />
+  <meta property="og:title" content="SXFestival 2026 — Berlin" />
+  <meta property="og:description" content="Two days. Four stages. Zero apologies. Berlin, 27–28 June 2026." />
+  <meta property="og:image" content="./images/og-image.jpg" />
+
+  <!-- ─── FONTS ──────────────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       DESIGN TOKENS
+       ═══════════════════════════════════════════════════════════════════ */
+    :root {
+      --bg:          #080808;
+      --bg-card:     #111111;
+      --bg-card-2:   #181818;
+      --yellow:      #DAFF00;
+      --red:         #FF1F1F;
+      --red-dark:    #220505;
+      --white:       #FFFFFF;
+      --grey:        #666666;
+      --grey-light:  #AAAAAA;
+      --border:      #222222;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-heading: 'Barlow Condensed', sans-serif;
+      --font-body:    'Syne', sans-serif;
+
+      --max-w: 1200px;
+      --gutter: clamp(1rem, 5vw, 3rem);
+      --radius: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       RESET + BASE
+       ═══════════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       TYPOGRAPHY UTILITIES
+       ═══════════════════════════════════════════════════════════════════ */
+    .label {
+      font-family: var(--font-body);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: .95;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       BUTTON
+       ═══════════════════════════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--bg);
+      border-color: var(--yellow);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--yellow);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--bg);
+    }
+    .btn-red {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+    }
+    .btn-red:hover {
+      background: transparent;
+      color: var(--red);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem var(--gutter);
+      background: rgba(8,8,8,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: .06em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--yellow); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      font-size: .9rem;
+      padding: .6rem 1.4rem;
+    }
+
+    /* Hide nav links on mobile, keep CTA */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 80px;
+      padding-bottom: 4rem;
+      padding-inline: var(--gutter);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background: dark with noise grain texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse 80% 60% at 50% 0%, #1a0505 0%, var(--bg) 70%);
+      z-index: 0;
+    }
+
+    /* ── Replace this with real hero image ── */
+    /* .hero-bg-image {
+      position: absolute; inset: 0;
+      background: url('./images/hero-bg.jpg') center/cover no-repeat;
+      opacity: .25;
+      z-index: 0;
+    } */
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 16vw, 14rem);
+      line-height: .88;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 4vw, 2.8rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--yellow);
+      letter-spacing: .02em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta {
+      font-family: var(--font-heading);
+      font-size: clamp(.95rem, 2vw, 1.2rem);
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       TICKER
+       ═══════════════════════════════════════════════════════════════════ */
+    .ticker {
+      background: var(--yellow);
+      color: var(--bg);
+      overflow: hidden;
+      padding: .7rem 0;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker-scroll 28s linear infinite;
+    }
+    .ticker-item {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding-inline: 2.5rem;
+    }
+    .ticker-sep { opacity: .4; }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       THREE PILLARS
+       ═══════════════════════════════════════════════════════════════════ */
+    .pillars {
+      padding: 6rem var(--gutter);
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .pillars-header {
+      margin-bottom: 3rem;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .pillar {
+      background: var(--bg-card);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background .3s;
+    }
+    .pillar:hover { background: var(--bg-card-2); }
+
+    .pillar-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .pillar-tag {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .pillar-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .pillar-sub {
+      font-family: var(--font-heading);
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem .8rem;
+    }
+    .pillar-sub span::after { content: '·'; margin-left: .8rem; opacity: .4; }
+    .pillar-sub span:last-child::after { content: ''; }
+
+    .pillar-body {
+      font-size: .95rem;
+      color: var(--grey-light);
+      line-height: 1.7;
+    }
+
+    .pillar-names {
+      font-family: var(--font-heading);
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding-top: .5rem;
+      border-top: 1px solid var(--border);
+      opacity: .85;
+    }
+
+    /* Red Moon pillar accent */
+    .pillar--red {
+      background: var(--red-dark);
+      border-top: 3px solid var(--red);
+    }
+    .pillar--red:hover { background: #2a0606; }
+    .pillar--red .pillar-tag { color: var(--red); }
+
+    /* Kinky Garden accent */
+    .pillar--garden {
+      border-top: 3px solid var(--yellow);
+    }
+    .pillar--garden .pillar-tag { color: var(--yellow); }
+
+    /* Speakers accent */
+    .pillar--speakers {
+      border-top: 3px solid var(--white);
+    }
+    .pillar--speakers .pillar-tag { color: var(--white); }
+
+    /* Secret act badge */
+    .secret-badge {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      margin-top: .3rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       HEADLINERS
+       ═══════════════════════════════════════════════════════════════════ */
+    .headliners {
+      padding: 6rem var(--gutter);
+      background: var(--bg-card);
+    }
+
+    .headliners-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .headliners-header {
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .artist-card {
+      background: var(--bg);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+
+    /*
+     * ── TO ADD REAL PHOTOS ──────────────────────────────────────────────
+     * Give each .artist-card an inline style or a data attribute:
+     *   style="background-image: url('./images/cat-mint.jpg')"
+     * The JS below handles this automatically if you add data-img="./images/..."
+     * ─────────────────────────────────────────────────────────────────── */
+    .artist-photo {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+      background-color: #1a1a1a;
+      transition: transform .4s ease;
+    }
+    .artist-card:hover .artist-photo { transform: scale(1.04); }
+
+    /* Placeholder letter when no photo is set */
+    .artist-photo::before {
+      content: attr(data-initial);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 6rem;
+      color: var(--border);
+      opacity: .6;
+    }
+
+    .artist-photo.has-image::before { display: none; }
+
+    .artist-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.9) 0%, transparent 100%);
+      padding: 2rem 1.2rem 1.2rem;
+      transform: translateY(0);
+      transition: transform .3s ease;
+    }
+
+    .artist-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .artist-role {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      margin-top: .25rem;
+    }
+
+    .artist-role--dj    { color: var(--yellow); }
+    .artist-role--perf  { color: var(--red); }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       PROGRAMME HIGHLIGHTS
+       ═══════════════════════════════════════════════════════════════════ */
+    .programme {
+      padding: 6rem var(--gutter);
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .programme-header { margin-bottom: 3rem; }
+
+    .day-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .day-tab {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      padding: .8rem 2rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      position: relative;
+      transition: color .2s;
+    }
+    .day-tab::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: var(--yellow);
+      transform: scaleX(0);
+      transition: transform .2s;
+    }
+    .day-tab.active { color: var(--white); }
+    .day-tab.active::after { transform: scaleX(1); }
+
+    .day-content { display: none; }
+    .day-content.active { display: block; }
+
+    .stage-section { margin-bottom: 2.5rem; }
+
+    .stage-label {
+      font-family: var(--font-heading);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      padding-bottom: .75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .session-list { list-style: none; }
+
+    .session-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+      padding: .9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      align-items: start;
+    }
+    .session-item:last-child { border-bottom: none; }
+
+    .session-time {
+      font-family: var(--font-heading);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--grey);
+      padding-top: .1rem;
+    }
+
+    .session-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .session-speaker {
+      font-size: .78rem;
+      color: var(--grey-light);
+      margin-top: .2rem;
+    }
+
+    .session-type {
+      display: inline-block;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .15rem .5rem;
+      background: var(--bg-card-2);
+      color: var(--grey-light);
+      margin-top: .35rem;
+    }
+    .session-type--keynote   { background: var(--yellow); color: var(--bg); }
+    .session-type--panel     { background: var(--bg-card-2); color: var(--grey-light); }
+    .session-type--workshop  { background: #1a2200; color: var(--yellow); }
+    .session-type--dj        { background: var(--red-dark); color: var(--red); }
+    .session-type--performance { background: var(--red-dark); color: var(--red); }
+    .session-type--meet      { background: #0d1a00; color: #aacc00; }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       TICKETS
+       ═══════════════════════════════════════════════════════════════════ */
+    .tickets {
+      padding: 6rem var(--gutter);
+      background: var(--bg-card);
+    }
+
+    .tickets-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .tickets-header { margin-bottom: 3rem; }
+
+    .tickets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .ticket-card {
+      background: var(--bg);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ticket-card--featured {
+      background: var(--yellow);
+      color: var(--bg);
+    }
+    .ticket-card--featured .ticket-price,
+    .ticket-card--featured .ticket-name,
+    .ticket-card--featured .ticket-desc,
+    .ticket-card--featured .ticket-includes li { color: var(--bg); }
+    .ticket-card--featured .ticket-includes li::before { color: var(--bg); }
+
+    .ticket-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .ticket-price {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .ticket-price sub {
+      font-size: 1rem;
+      font-weight: 600;
+      vertical-align: baseline;
+      margin-right: .2rem;
+    }
+    .ticket-price .from {
+      font-size: .85rem;
+      font-weight: 500;
+      opacity: .6;
+      display: block;
+      margin-bottom: .2rem;
+    }
+
+    .ticket-desc {
+      font-size: .88rem;
+      color: var(--grey-light);
+      line-height: 1.6;
+    }
+
+    .ticket-includes {
+      list-style: none;
+      font-size: .85rem;
+      color: var(--grey-light);
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      flex: 1;
+    }
+    .ticket-includes li::before {
+      content: '✓ ';
+      color: var(--yellow);
+      font-weight: 700;
+    }
+
+    .ticket-note {
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .ticket-note a { color: var(--yellow); }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════════════════════════════ */
+    .faq {
+      padding: 6rem var(--gutter);
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .faq-header { margin-bottom: 3rem; }
+
+    .faq-list { display: flex; flex-direction: column; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-align: left;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color .2s;
+    }
+    .faq-question:hover { color: var(--yellow); }
+
+    .faq-icon {
+      font-size: 1.4rem;
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform .3s;
+      color: var(--yellow);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-answer {
+      font-size: .95rem;
+      color: var(--grey-light);
+      line-height: 1.75;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease, padding .3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+      padding-bottom: 1.5rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       VENUE
+       ═══════════════════════════════════════════════════════════════════ */
+    .venue {
+      background: var(--bg-card);
+      padding: 6rem var(--gutter);
+    }
+
+    .venue-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .venue-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .venue-details { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .venue-name {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .venue-address {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--grey-light);
+      line-height: 1.6;
+    }
+
+    .venue-transport {
+      font-size: .88rem;
+      color: var(--grey-light);
+      line-height: 1.75;
+    }
+    .venue-transport strong { color: var(--white); }
+
+    .venue-map {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--bg-card-2);
+    }
+    .venue-map iframe {
+      width: 100%; height: 100%;
+      border: none;
+      filter: grayscale(100%) invert(90%) contrast(90%);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════════════ */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem var(--gutter);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: .06em;
+    }
+    .footer-logo span { color: var(--yellow); }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .social-link {
+      font-family: var(--font-heading);
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      transition: color .2s;
+    }
+    .social-link:hover { color: var(--yellow); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      font-size: .75rem;
+      color: var(--grey);
+      font-family: var(--font-heading);
+      letter-spacing: .06em;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════════════════════════════ */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow { animation: fade-up .6s ease .1s both; }
+    .hero-title   { animation: fade-up .7s ease .2s both; }
+    .hero-tagline { animation: fade-up .7s ease .35s both; }
+    .hero-meta    { animation: fade-up .6s ease .45s both; }
+    .hero-ctas    { animation: fade-up .6s ease .55s both; }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .hero-ctas { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .artists-grid { grid-template-columns: repeat(2, 1fr); }
+      .pillar { padding: 1.75rem; }
+      .session-item { grid-template-columns: 65px 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     NAVIGATION
+     ══════════════════════════════════════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <a href="#" class="nav-logo">SX<span>festival</span></a>
+
+  <ul class="nav-links">
+    <li><a href="#pillars">What's On</a></li>
+    <li><a href="#headliners">Headliners</a></li>
+    <li><a href="#programme">Programme</a></li>
+    <li><a href="#tickets">Tickets</a></li>
+    <li><a href="#venue">Venue</a></li>
+  </ul>
+
+  <a href="#tickets" class="btn btn-primary nav-cta">Get Tickets</a>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <!-- Uncomment and update src to use a real hero background image:
+  <div class="hero-bg-image" style="background-image: url('./images/hero-bg.jpg')"></div>
+  -->
+
+  <div class="hero-content">
+    <p class="label hero-eyebrow">Pleasure · Culture · Technology</p>
+
+    <h1 class="hero-title">SX<br>Festival</h1>
+
+    <p class="hero-tagline">Two days. Four stages. Zero apologies.</p>
+
+    <p class="hero-meta">
+      27–28 June 2026 &nbsp;·&nbsp; Heeresbäckerei Berlin &nbsp;·&nbsp; Köpenicker Str. 16
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#tickets" class="btn btn-primary">Get Tickets</a>
+      <a href="#programme" class="btn btn-outline">See Programme</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     TICKER
+     ══════════════════════════════════════════════════════════════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- Duplicated for seamless loop -->
+    <span class="ticker-item">Speakers</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Panels</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Kinky Garden</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Workshops</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Red Moon Party</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">50+ Brands</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Meet & Greets</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">DJ Sets</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Secret Act · Midnight</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <!-- repeat -->
+    <span class="ticker-item">Speakers</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Panels</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Kinky Garden</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Workshops</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Red Moon Party</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">50+ Brands</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Meet & Greets</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">DJ Sets</span>
+    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">Secret Act · Midnight</span>
+    <span class="ticker-item ticker-sep">·</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     THREE PILLARS
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="pillars" id="pillars" aria-labelledby="pillars-title">
+  <div class="pillars-header">
+    <p class="label">What's On</p>
+    <h2 class="section-title" id="pillars-title">Three<br>Experiences</h2>
+  </div>
+
+  <div class="pillars-grid">
+
+    <!-- ── Speakers & Performances ── -->
+    <div class="pillar pillar--speakers">
+      <span class="pillar-icon">🎤</span>
+      <span class="pillar-tag">Sensual &amp; Impact Stage</span>
+      <h3 class="pillar-title">Speakers &amp;<br>Performances</h3>
+      <div class="pillar-sub">
+        <span>Panels</span>
+        <span>Keynotes</span>
+        <span>Live Shows</span>
+        <span>Meet &amp; Greets</span>
+      </div>
+      <p class="pillar-body">
+        "Your Parents Had More Sex Than You." The data panel that will change how you
+        think about your sex life. Plus keynotes, creator meet &amp; greets, and
+        conversations you won't hear anywhere else.
+      </p>
+      <p class="pillar-names">
+        Susan Bratton · Catherine DeNoire · ANIKE EKINA · Marina Valmont
+      </p>
+    </div>
+
+    <!-- ── Kinky Garden ── -->
+    <div class="pillar pillar--garden">
+      <span class="pillar-icon">🌿</span>
+      <span class="pillar-tag">Outdoor · Open Air</span>
+      <h3 class="pillar-title">Kinky<br>Garden</h3>
+      <div class="pillar-sub">
+        <span>Rope Garden</span>
+        <span>Sound Bath</span>
+        <span>50+ Brands</span>
+        <span>Open Air</span>
+      </div>
+      <p class="pillar-body">
+        La Monstera's Rope Garden. A sound bath for your sexuality. 50+ pleasure brands.
+        Open air. Cold drinks. The place where the afternoon turns into something
+        you didn't plan for.
+      </p>
+      <p class="pillar-names">
+        La Monstera · Erotic Market · Food &amp; Drinks · DJ
+      </p>
+    </div>
+
+    <!-- ── Red Moon Party ── -->
+    <div class="pillar pillar--red">
+      <span class="pillar-icon">🌑</span>
+      <span class="pillar-tag">Saturday Night · Until 2am</span>
+      <h3 class="pillar-title">Red Moon<br>Party</h3>
+      <div class="pillar-sub">
+        <span>DJ Sets</span>
+        <span>Live Shows</span>
+        <span>Ritual Performance</span>
+      </div>
+      <p class="pillar-body">
+        CAT MINT ignites the night. Kylie Darling performs the opening ritual.
+        MONSTERS kINC. takes the stage. Then a secret act nobody's talking
+        about yet closes it all down. Afterglow until 2am.
+      </p>
+      <p class="pillar-names">CAT MINT · Kylie Darling · MONSTERS kINC.</p>
+      <span class="secret-badge">Secret Act · Midnight</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     HEADLINERS
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="headliners" id="headliners" aria-labelledby="headliners-title">
+  <div class="headliners-inner">
+    <div class="headliners-header">
+      <div>
+        <p class="label">The Lineup</p>
+        <h2 class="section-title" id="headliners-title">Who's There</h2>
+      </div>
+      <a href="#programme" class="btn btn-outline">Full Programme</a>
+    </div>
+
+    <!--
+      ── HOW TO ADD REAL PHOTOS ───────────────────────────────────────────
+      Add a data-img attribute to each .artist-card with the path to the photo.
+      Example: data-img="./images/cat-mint.jpg"
+      The JS below will set it as the background image automatically.
+      Image naming convention: firstname-lastname.jpg (lowercase, hyphenated)
+      Recommended: 600×800px minimum, portrait orientation
+      ─────────────────────────────────────────────────────────────────── -->
+
+    <div class="artists-grid">
+
+      <div class="artist-card" data-img="./images/susan-bratton.jpg">
+        <div class="artist-photo" data-initial="S"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">Susan Bratton</p>
+          <p class="artist-role">Keynote Speaker</p>
+        </div>
+      </div>
+
+      <div class="artist-card" data-img="./images/catherine-denoire.jpg">
+        <div class="artist-photo" data-initial="C"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">Catherine DeNoire</p>
+          <p class="artist-role">Host · Keynote</p>
+        </div>
+      </div>
+
+      <div class="artist-card" data-img="./images/anike-ekina.jpg">
+        <div class="artist-photo" data-initial="A"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">ANIKE EKINA</p>
+          <p class="artist-role artist-role--dj">DJ · Creator · Performer</p>
+        </div>
+      </div>
+
+      <div class="artist-card" data-img="./images/cat-mint.jpg">
+        <div class="artist-photo" data-initial="C"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">CAT MINT</p>
+          <p class="artist-role artist-role--dj">DJ · Red Moon Party</p>
+        </div>
+      </div>
+
+      <div class="artist-card" data-img="./images/kylie-darling.jpg">
+        <div class="artist-photo" data-initial="K"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">Kylie Darling</p>
+          <p class="artist-role artist-role--perf">Ritual Performance</p>
+        </div>
+      </div>
+
+      <div class="artist-card" data-img="./images/monsters-kinc.jpg">
+        <div class="artist-photo" data-initial="M"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">MONSTERS kINC.</p>
+          <p class="artist-role artist-role--perf">Live Show</p>
+        </div>
+      </div>
+
+      <div class="artist-card" data-img="./images/la-monstera.jpg">
+        <div class="artist-photo" data-initial="L"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">La Monstera</p>
+          <p class="artist-role">Rope Workshop</p>
+        </div>
+      </div>
+
+      <div class="artist-card" data-img="./images/marina-valmont.jpg">
+        <div class="artist-photo" data-initial="M"></div>
+        <div class="artist-overlay">
+          <p class="artist-name">Marina Valmont</p>
+          <p class="artist-role">Naked News · Host</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     PROGRAMME HIGHLIGHTS
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="programme" id="programme" aria-labelledby="programme-title">
+  <div class="programme-header">
+    <p class="label">Schedule</p>
+    <h2 class="section-title" id="programme-title">Programme<br>Highlights</h2>
+  </div>
+
+  <div class="day-tabs" role="tablist">
+    <button class="day-tab active" role="tab" aria-selected="true"
+            aria-controls="day1" data-day="1">
+      Saturday 27 June
+    </button>
+    <button class="day-tab" role="tab" aria-selected="false"
+            aria-controls="day2" data-day="2">
+      Sunday 28 June
+    </button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-content active" id="day1" role="tabpanel">
+
+    <div class="stage-section">
+      <p class="stage-label">Sensual Stage</p>
+      <ul class="session-list">
+        <li class="session-item">
+          <span class="session-time">12:00</span>
+          <div>
+            <p class="session-title">Stage Opening with Catherine DeNoire</p>
+            <span class="session-type session-type--keynote">Opening</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">12:30</span>
+          <div>
+            <p class="session-title">Sober Sex – Building Confidence and Connection Again</p>
+            <p class="session-speaker">Dr. Maddie Sin · Miss Masochist · Muse Sacred</p>
+            <span class="session-type session-type--panel">Panel</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">13:40</span>
+          <div>
+            <p class="session-title">The Shift Between Online and Offline Sex Work</p>
+            <p class="session-speaker">Catherine DeNoire</p>
+            <span class="session-type session-type--keynote">Keynote</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">14:05</span>
+          <div>
+            <p class="session-title">How to Maintain &amp; Gain New Customers</p>
+            <p class="session-speaker">Nikki Night (Stripchat)</p>
+            <span class="session-type session-type--keynote">Keynote</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">15:30</span>
+          <div>
+            <p class="session-title">Your Parents Had More Sex Than You – Creators React to the Data</p>
+            <p class="session-speaker">Harpy Fatale · ECCY · Trixie Fox · Hannah Bacon + more</p>
+            <span class="session-type session-type--panel">Quiz Panel</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">16:30</span>
+          <div>
+            <p class="session-title">Creators Meet &amp; Greet Live Session</p>
+            <p class="session-speaker">Marina Valmont (Naked News)</p>
+            <span class="session-type session-type--meet">Meet &amp; Greet</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">17:40</span>
+          <div>
+            <p class="session-title">ANIKE EKINA Meet &amp; Greet + DJ Set</p>
+            <p class="session-speaker">ANIKE EKINA</p>
+            <span class="session-type session-type--dj">DJ · Creator</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="stage-section">
+      <p class="stage-label">Seduction Stage — Workshops</p>
+      <ul class="session-list">
+        <li class="session-item">
+          <span class="session-time">13:10</span>
+          <div>
+            <p class="session-title">Erotic Circuits</p>
+            <p class="session-speaker">Cristina Dezi (Bruixes_Lab)</p>
+            <span class="session-type session-type--workshop">Workshop</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">15:45</span>
+          <div>
+            <p class="session-title">Exploring Arousal Beyond the Physical – Live Experience by Moonlight Society</p>
+            <p class="session-speaker">Marie Morgenstern (Moonlight Society)</p>
+            <span class="session-type session-type--workshop">Immersive Workshop</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="stage-section">
+      <p class="stage-label">Kinky Garden &amp; Red Moon Party</p>
+      <ul class="session-list">
+        <li class="session-item">
+          <span class="session-time">13:30</span>
+          <div>
+            <p class="session-title">La Monstera Rope Garden: Tension, Trust &amp; Technique</p>
+            <p class="session-speaker">La Monstera · Model: Icon Fetish</p>
+            <span class="session-type session-type--workshop">Rope Workshop</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">18:00</span>
+          <div>
+            <p class="session-title">Red Moon Prelude — Ritual Performance</p>
+            <p class="session-speaker">Kylie Darling</p>
+            <span class="session-type session-type--performance">Performance</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">19:00</span>
+          <div>
+            <p class="session-title">Red Moon Party Ignition</p>
+            <p class="session-speaker">CAT MINT</p>
+            <span class="session-type session-type--dj">DJ Set</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">21:30</span>
+          <div>
+            <p class="session-title">Red Moon Heatwave Show</p>
+            <p class="session-speaker">MONSTERS kINC. &amp; CAT MINT</p>
+            <span class="session-type session-type--performance">Live Show</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">00:00</span>
+          <div>
+            <p class="session-title">Secret Act: Void Restraint</p>
+            <p class="session-speaker">Identity revealed at the door</p>
+            <span class="session-type session-type--performance">Secret Act · Midnight</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">00:00–02:00</span>
+          <div>
+            <p class="session-title">Red Moon Party: Afterglow</p>
+            <span class="session-type session-type--dj">Party</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /day1 -->
+
+  <!-- DAY 2 -->
+  <div class="day-content" id="day2" role="tabpanel">
+
+    <div class="stage-section">
+      <p class="stage-label">Sensual Stage</p>
+      <ul class="session-list">
+        <li class="session-item">
+          <span class="session-time">12:10</span>
+          <div>
+            <p class="session-title">Crossing the Gasm Chasm – Activating and Expanding Your Female Orgasmic Potential</p>
+            <p class="session-speaker">Susan Bratton (Better Lover)</p>
+            <span class="session-type session-type--keynote">Keynote</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">13:00</span>
+          <div>
+            <p class="session-title">Non Monogamy Without the Filter</p>
+            <p class="session-speaker">Ally Iseman · Courtney Boyer · Susan Bratton · Reed Amber</p>
+            <span class="session-type session-type--panel">Panel</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">14:30</span>
+          <div>
+            <p class="session-title">Live Coded Intimacy</p>
+            <p class="session-speaker">Sabrina Verhage &amp; Nikilia</p>
+            <span class="session-type session-type--workshop">Live Interactive Experience</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">15:40</span>
+          <div>
+            <p class="session-title">Your Parents Had More Sex Than You – Creators React to the Data</p>
+            <p class="session-speaker">Marius Rohde · ECCY · Trixie Fox + more · Hosted by Ana Ornelas</p>
+            <span class="session-type session-type--panel">Quiz Panel</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">16:15</span>
+          <div>
+            <p class="session-title">Power, Control &amp; Consent: Redefining Dominance in Modern Culture</p>
+            <p class="session-speaker">Miss Swan · Vita Voliton · La Monstera · Goddess Alanis · Fetisch Barbie</p>
+            <span class="session-type session-type--panel">Panel</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="stage-section">
+      <p class="stage-label">Seduction Stage</p>
+      <ul class="session-list">
+        <li class="session-item">
+          <span class="session-time">12:35</span>
+          <div>
+            <p class="session-title">One Step Ahead – How to Market in an AI Landscape</p>
+            <p class="session-speaker">Ashton Egner · Kathryn Byberg · Shari Klein</p>
+            <span class="session-type session-type--panel">Panel</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">14:55</span>
+          <div>
+            <p class="session-title">From Shadowbanned to Scale: Growth Strategies for Female Founders in Censored Categories</p>
+            <p class="session-speaker">Susan Bratton (Better Lover)</p>
+            <span class="session-type session-type--keynote">Keynote</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">16:20</span>
+          <div>
+            <p class="session-title">Speed Dating — Business &amp; Technology</p>
+            <span class="session-type">Networking</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">17:30</span>
+          <div>
+            <p class="session-title">Grand Finale Cocktails at the VIP Lounge</p>
+            <p class="session-speaker">Speakers · Creators · Sponsors · Industry Professionals</p>
+            <span class="session-type">Closing Event</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="stage-section">
+      <p class="stage-label">Kinky Garden — Day 2</p>
+      <ul class="session-list">
+        <li class="session-item">
+          <span class="session-time">13:00</span>
+          <div>
+            <p class="session-title">Frequency of Sexuality — Sound Bath</p>
+            <span class="session-type session-type--workshop">Sound Bath</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">14:00</span>
+          <div>
+            <p class="session-title">Beyond Restraints – Exploring Deeper Forms of Intimacy</p>
+            <span class="session-type session-type--workshop">Experience</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">15:15</span>
+          <div>
+            <p class="session-title">Performance</p>
+            <p class="session-speaker">Charlie Bouquett</p>
+            <span class="session-type session-type--performance">Performance</span>
+          </div>
+        </li>
+        <li class="session-item">
+          <span class="session-time">15:45</span>
+          <div>
+            <p class="session-title">Live Music Performance with DJ</p>
+            <span class="session-type session-type--dj">Live Music</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /day2 -->
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     TICKETS
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="tickets" id="tickets" aria-labelledby="tickets-title">
+  <div class="tickets-inner">
+    <div class="tickets-header">
+      <p class="label">Join Us</p>
+      <h2 class="section-title" id="tickets-title">Get Your<br>Tickets</h2>
+    </div>
+
+    <!--
+      ── UPDATE PRICES & TICKET LINKS ────────────────────────────────────
+      Replace [PRICE] with the actual prices.
+      Replace href="#" on each .btn with the Eventbrite ticket link.
+      ─────────────────────────────────────────────────────────────────── -->
+
+    <div class="tickets-grid">
+
+      <div class="ticket-card">
+        <p class="ticket-name">Day Ticket</p>
+        <p class="ticket-price">
+          <span class="from">from</span>
+          <sub>€</sub>[PRICE]
+        </p>
+        <p class="ticket-desc">One day access — Saturday or Sunday. Choose your adventure.</p>
+        <ul class="ticket-includes">
+          <li>All three stages</li>
+          <li>Kinky Garden access</li>
+          <li>50+ exhibitors</li>
+          <li>Panels, workshops, meet &amp; greets</li>
+        </ul>
+        <a href="#" class="btn btn-outline">Buy Day Ticket</a>
+      </div>
+
+      <div class="ticket-card ticket-card--featured">
+        <p class="ticket-name">2-in-1 Weekend</p>
+        <p class="ticket-price">
+          <span class="from">from</span>
+          <sub>€</sub>[PRICE]
+        </p>
+        <p class="ticket-desc">Both days. The full experience. The recommended choice.</p>
+        <ul class="ticket-includes">
+          <li>Saturday + Sunday full access</li>
+          <li>All stages, all workshops</li>
+          <li>50+ exhibitors</li>
+          <li>Grand Finale cocktail hour</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Buy Weekend Ticket</a>
+      </div>
+
+      <div class="ticket-card">
+        <p class="ticket-name">Red Moon Party</p>
+        <p class="ticket-price">
+          <span class="from">from</span>
+          <sub>€</sub>[PRICE]
+        </p>
+        <p class="ticket-desc">Saturday night only. CAT MINT. Kylie Darling. A secret act. Until 2am.</p>
+        <ul class="ticket-includes">
+          <li>Red Moon Party access (from 19:00)</li>
+          <li>CAT MINT + MONSTERS kINC. show</li>
+          <li>Ritual performance by Kylie Darling</li>
+          <li>Secret act at midnight</li>
+        </ul>
+        <a href="#" class="btn btn-red">Buy Party Ticket</a>
+      </div>
+
+    </div>
+
+    <p class="ticket-note">
+      Limited tickets available. Questions? <a href="mailto:hello@sxtech.eu">hello@sxtech.eu</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     FAQ
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="faq-header">
+    <p class="label">First time?</p>
+    <h2 class="section-title" id="faq-title">Good to<br>Know</h2>
+  </div>
+
+  <div class="faq-list" role="list">
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        What exactly is SXFestival?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">
+        SXFestival is a two-day festival at the intersection of pleasure, culture, and
+        technology. It's part conference — with real speakers giving real talks — part
+        expo with 50+ brands, and part party. It is not a sex club. It is not a rave.
+        It is a space where adults who are curious about intimacy, technology, and
+        creative expression can explore in a safe, consent-driven environment.
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        Is it for me if I've never been to something like this?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">
+        Yes. Many of our visitors are curious newcomers. You don't need to be part of
+        any specific scene or community. Nobody will pressure you to do anything, see
+        anything, or be anything you don't want to be. Come as curious as you like
+        and take it at your own pace.
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        Is there a dress code?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">
+        For the daytime festival: no dress code. Come however you feel comfortable.
+        For the Red Moon Party on Saturday evening, we encourage you to dress to
+        express — think dark, bold, or whatever makes you feel most like yourself.
+        Full details on the ticket confirmation email.
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        What's the consent and safety policy?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">
+        Consent is non-negotiable at SXFestival. We have a clear code of conduct:
+        ask before touching, respect every no, and look after each other. A trained
+        awareness team is present throughout the venue and event. Anyone who does not
+        respect these principles will be removed without refund.
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        Can I attend as a couple or group?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">
+        Absolutely. Many people come with a partner, a friend, or a group. We offer
+        a 2-in-1 weekend ticket which is designed exactly for this. Each person in
+        your group needs their own ticket.
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false">
+        Is this event 18+?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">
+        Yes. SXFestival is strictly 18+. Please bring valid ID. Anyone who cannot
+        prove they are 18 or over will not be admitted and will not receive a refund.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     VENUE
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="venue" id="venue" aria-labelledby="venue-title">
+  <div class="venue-inner">
+    <div class="venue-details">
+      <p class="label">The Location</p>
+      <h2 class="venue-name" id="venue-title">Heeresb&auml;ckerei<br>Berlin</h2>
+      <p class="venue-address">
+        Köpenicker Straße 16<br>
+        10997 Berlin, Germany
+      </p>
+      <p class="venue-transport">
+        <strong>U-Bahn:</strong> Schlesisches Tor (U1) — 5 min walk<br>
+        <strong>Bus:</strong> Lines 140, 265 — Köpenicker Str. stop<br>
+        <strong>By bike:</strong> Bike parking available on site
+      </p>
+      <a href="https://maps.google.com/?q=Köpenicker+Straße+16,+10997+Berlin" target="_blank" rel="noopener" class="btn btn-outline">
+        Open in Google Maps
+      </a>
+    </div>
+
+    <div class="venue-map">
+      <!--
+        Embedded Google Maps iframe.
+        Replace the src URL if needed — current coordinates: Köpenicker Str. 16, Berlin.
+      -->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.4!2d13.4435!3d52.4985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84f27a9e3d929%3A0x6d1e6b7f2f3d4a5b!2sK%C3%B6penicker%20Str.%2016%2C%2010997%20Berlin!5e0!3m2!1sen!2sde!4v1683000000000!5m2!1sen!2sde"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Heeresbäckerei Berlin location"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer">
+    <div class="footer-top">
+      <a href="#" class="footer-logo">SX<span>festival</span></a>
+
+      <div class="footer-socials">
+        <a href="https://instagram.com/sxfestival" target="_blank" rel="noopener"
+           class="social-link" aria-label="Instagram">Instagram</a>
+        <a href="https://sxtech.eu" target="_blank" rel="noopener"
+           class="social-link">sxtech.eu</a>
+        <a href="#tickets" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.4rem;">
+          Get Tickets
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 SXTech EU GmbH · Linkstraße 2, 10785 Berlin</span>
+      <span>
+        <a href="https://sxtech.eu/imprint" style="color:inherit">Imprint</a>
+        &nbsp;·&nbsp;
+        <a href="https://sxtech.eu/privacy" style="color:inherit">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════════════════════════════════════ -->
+<script>
+  /* ── Tab switching for programme ──────────────────────────────────── */
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const day = tab.dataset.day;
+
+      document.querySelectorAll('.day-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      document.getElementById('day' + day).classList.add('active');
+    });
+  });
+
+  /* ── FAQ accordion ────────────────────────────────────────────────── */
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked (unless it was already open)
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Artist photos: swap in real images via data-img ──────────────── */
+  /*
+   * If a .artist-card has data-img="./images/filename.jpg",
+   * and that file exists, it gets applied as the background image.
+   * The placeholder letter disappears automatically.
+   */
+  document.querySelectorAll('.artist-card[data-img]').forEach(card => {
+    const src = card.dataset.img;
+    if (!src) return;
+
+    const photo = card.querySelector('.artist-photo');
+    const img = new Image();
+    img.onload = () => {
+      photo.style.backgroundImage = `url('${src}')`;
+      photo.classList.add('has-image');
+    };
+    // If image fails to load, placeholder letter stays visible
+    img.src = src;
+  });
+
+  /* ── Sticky nav: add border on scroll ─────────────────────────────── */
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 50 ? 'var(--border)' : 'transparent';
+  }, { passive: true });
+</script>
+
+</body>
+</html>
