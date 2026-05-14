@@ -200,28 +200,28 @@
       overflow: hidden;
     }
 
-    /* Background: dark with noise grain texture */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: .65;
+    }
+
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"),
-        radial-gradient(ellipse 80% 60% at 50% 0%, #1a0505 0%, var(--bg) 70%);
-      z-index: 0;
+        linear-gradient(to top, var(--bg) 0%, rgba(8,8,8,.25) 50%, rgba(8,8,8,.05) 100%);
+      z-index: 1;
     }
-
-    /* ── Replace this with real hero image ── */
-    /* .hero-bg-image {
-      position: absolute; inset: 0;
-      background: url('./images/hero-bg.jpg') center/cover no-repeat;
-      opacity: .25;
-      z-index: 0;
-    } */
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: var(--max-w);
       margin-inline: auto;
       width: 100%;
@@ -264,6 +264,51 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,.15);
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+    }
+
+    .hero-stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1;
+      color: var(--yellow);
+      letter-spacing: .01em;
+    }
+
+    .hero-stat-label {
+      font-family: var(--font-heading);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+    }
+
+    .hero-stat-divider {
+      width: 1px;
+      height: 3rem;
+      background: rgba(255,255,255,.15);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 640px) {
+      .hero-stat-divider { display: none; }
     }
 
     /* ═══════════════════════════════════════════════════════════════════
@@ -323,11 +368,6 @@
       transition: background .3s;
     }
     .pillar:hover { background: var(--bg-card-2); }
-
-    .pillar-icon {
-      font-size: 2rem;
-      line-height: 1;
-    }
 
     .pillar-tag {
       font-family: var(--font-body);
@@ -479,14 +519,42 @@
 
     .artist-photo.has-image::before { display: none; }
 
+    .artist-photo-hover {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+      opacity: 0;
+      transition: opacity .4s ease;
+      z-index: 1;
+    }
+    .artist-card:hover .artist-photo-hover { opacity: 1; }
+
+    .artist-video-hover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0;
+      transition: opacity .4s ease;
+      z-index: 1;
+    }
+    .artist-card:hover .artist-video-hover { opacity: 1; }
+
     .artist-overlay {
       position: absolute;
       bottom: 0; left: 0; right: 0;
       background: linear-gradient(to top, rgba(0,0,0,.9) 0%, transparent 100%);
       padding: 2rem 1.2rem 1.2rem;
-      transform: translateY(0);
-      transition: transform .3s ease;
+      z-index: 2;
     }
+
+    .artist-role {
+      transition: opacity .3s ease;
+    }
+    .artist-card:hover .artist-role { opacity: 0; }
 
     .artist-name {
       font-family: var(--font-heading);
@@ -661,6 +729,15 @@
     .ticket-card--featured .ticket-desc,
     .ticket-card--featured .ticket-includes li { color: var(--bg); }
     .ticket-card--featured .ticket-includes li::before { color: var(--bg); }
+    .ticket-card--featured .btn {
+      background: transparent;
+      color: var(--bg);
+      border-color: var(--bg);
+    }
+    .ticket-card--featured .btn:hover {
+      background: var(--bg);
+      color: var(--yellow);
+    }
 
     .ticket-name {
       font-family: var(--font-display);
@@ -824,16 +901,38 @@
     }
     .venue-transport strong { color: var(--white); }
 
-    .venue-map {
+    .venue-media {
+      display: flex;
+      flex-direction: column;
       border-radius: var(--radius);
       overflow: hidden;
-      aspect-ratio: 4/3;
+      gap: 3px;
+    }
+
+    .venue-photo {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .venue-map {
       background: var(--bg-card-2);
+      aspect-ratio: 16/7;
     }
     .venue-map iframe {
       width: 100%; height: 100%;
       border: none;
       filter: grayscale(100%) invert(90%) contrast(90%);
+    }
+
+    /* ── Pillar images ── */
+    .pillar-image {
+      margin: -2.5rem -2.5rem 0 -2.5rem;
+      aspect-ratio: 16/9;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--bg-card-2);
     }
 
     /* ═══════════════════════════════════════════════════════════════════
@@ -871,6 +970,9 @@
     }
 
     .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
       font-family: var(--font-heading);
       font-size: .85rem;
       font-weight: 700;
@@ -879,6 +981,7 @@
       color: var(--grey-light);
       transition: color .2s;
     }
+    .social-link svg { flex-shrink: 0; }
     .social-link:hover { color: var(--yellow); }
 
     .footer-bottom {
@@ -938,7 +1041,7 @@
     <li><a href="#venue">Venue</a></li>
   </ul>
 
-  <a href="#tickets" class="btn btn-primary nav-cta">Get Tickets</a>
+  <a href="https://www.eventbrite.ie/e/sx-festival-sx-expo-2026-berlin-tickets-1550925051579" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Get Tickets</a>
 </nav>
 
 
@@ -946,9 +1049,9 @@
      HERO
      ══════════════════════════════════════════════════════════════════════ -->
 <section class="hero" aria-label="Hero">
-  <!-- Uncomment and update src to use a real hero background image:
-  <div class="hero-bg-image" style="background-image: url('./images/hero-bg.jpg')"></div>
-  -->
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="./b2c-video.mp4" type="video/mp4">
+  </video>
 
   <div class="hero-content">
     <p class="label hero-eyebrow">Pleasure · Culture · Technology</p>
@@ -962,8 +1065,25 @@
     </p>
 
     <div class="hero-ctas">
-      <a href="#tickets" class="btn btn-primary">Get Tickets</a>
-      <a href="#programme" class="btn btn-outline">See Programme</a>
+      <a href="https://www.eventbrite.ie/e/sx-festival-sx-expo-2026-berlin-tickets-1550925051579" target="_blank" rel="noopener" class="btn btn-primary">Get Tickets</a>
+      <a href="https://sxtech.eu/program/" target="_blank" rel="noopener" class="btn btn-outline">See Programme</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">55+</span>
+        <span class="hero-stat-label">Speakers</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">45+</span>
+        <span class="hero-stat-label">Creators &amp; Ambassadors</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">200+</span>
+        <span class="hero-stat-label">Creators Attending</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1029,7 +1149,7 @@
 
     <!-- ── Speakers & Performances ── -->
     <div class="pillar pillar--speakers">
-      <span class="pillar-icon">🎤</span>
+      <div class="pillar-image" style="background-image:url('./images/speakers.jpeg')"></div>
       <span class="pillar-tag">Sensual &amp; Impact Stage</span>
       <h3 class="pillar-title">Speakers &amp;<br>Performances</h3>
       <div class="pillar-sub">
@@ -1050,7 +1170,7 @@
 
     <!-- ── Kinky Garden ── -->
     <div class="pillar pillar--garden">
-      <span class="pillar-icon">🌿</span>
+      <div class="pillar-image" style="background-image:url('./images/kinky-garden.jpg')"></div>
       <span class="pillar-tag">Outdoor · Open Air</span>
       <h3 class="pillar-title">Kinky<br>Garden</h3>
       <div class="pillar-sub">
@@ -1071,7 +1191,7 @@
 
     <!-- ── Red Moon Party ── -->
     <div class="pillar pillar--red">
-      <span class="pillar-icon">🌑</span>
+      <div class="pillar-image" style="background-image:url('./images/red-moon.jpg')"></div>
       <span class="pillar-tag">Saturday Night · Until 2am</span>
       <h3 class="pillar-title">Red Moon<br>Party</h3>
       <div class="pillar-sub">
@@ -1102,21 +1222,20 @@
         <p class="label">The Lineup</p>
         <h2 class="section-title" id="headliners-title">Who's There</h2>
       </div>
-      <a href="#programme" class="btn btn-outline">Full Programme</a>
+      <a href="https://sxtech.eu/program/" target="_blank" rel="noopener" class="btn btn-outline">Full Programme</a>
     </div>
 
     <!--
-      ── HOW TO ADD REAL PHOTOS ───────────────────────────────────────────
-      Add a data-img attribute to each .artist-card with the path to the photo.
-      Example: data-img="./images/cat-mint.jpg"
-      The JS below will set it as the background image automatically.
-      Image naming convention: firstname-lastname.jpg (lowercase, hyphenated)
-      Recommended: 600×800px minimum, portrait orientation
+      ── HOW TO ADD PHOTOS / VIDEOS ───────────────────────────────────────
+      data-img="./images/name.jpg"           — main image (always shown)
+      data-img-hover="./images/name-2.jpg"   — hover image
+      data-video-hover="./videos/name.mp4"   — hover video (overrides hover image)
+      Videos are lazy-loaded: zero download cost until first hover.
       ─────────────────────────────────────────────────────────────────── -->
 
     <div class="artists-grid">
 
-      <div class="artist-card" data-img="./images/susan-bratton.jpg">
+      <div class="artist-card" data-img="./images/susan-bratton.jpg" data-img-hover="./images/susan-bratton-2.jpg">
         <div class="artist-photo" data-initial="S"></div>
         <div class="artist-overlay">
           <p class="artist-name">Susan Bratton</p>
@@ -1124,7 +1243,7 @@
         </div>
       </div>
 
-      <div class="artist-card" data-img="./images/catherine-denoire.jpg">
+      <div class="artist-card" data-img="./images/catherine-denoire.jpg" data-img-hover="./images/catherine-denoire-2.jpg">
         <div class="artist-photo" data-initial="C"></div>
         <div class="artist-overlay">
           <p class="artist-name">Catherine DeNoire</p>
@@ -1132,7 +1251,7 @@
         </div>
       </div>
 
-      <div class="artist-card" data-img="./images/anike-ekina.jpg">
+      <div class="artist-card" data-img="./images/anike-ekina.jpg" data-img-hover="./images/anike-ekina-2.jpg">
         <div class="artist-photo" data-initial="A"></div>
         <div class="artist-overlay">
           <p class="artist-name">ANIKE EKINA</p>
@@ -1140,7 +1259,7 @@
         </div>
       </div>
 
-      <div class="artist-card" data-img="./images/cat-mint.jpg">
+      <div class="artist-card" data-img="./images/cat-mint.jpg" data-video-hover="./videos/cat-mint-2-fixed.mp4">
         <div class="artist-photo" data-initial="C"></div>
         <div class="artist-overlay">
           <p class="artist-name">CAT MINT</p>
@@ -1148,7 +1267,7 @@
         </div>
       </div>
 
-      <div class="artist-card" data-img="./images/kylie-darling.jpg">
+      <div class="artist-card" data-img="./images/kylie-darling.jpg" data-img-hover="./images/kylie-darling-2.jpg">
         <div class="artist-photo" data-initial="K"></div>
         <div class="artist-overlay">
           <p class="artist-name">Kylie Darling</p>
@@ -1156,7 +1275,7 @@
         </div>
       </div>
 
-      <div class="artist-card" data-img="./images/monsters-kinc.jpg">
+      <div class="artist-card" data-img="./images/monsters-kinc.jpg" data-img-hover="./images/monsters-kinc-2.jpg">
         <div class="artist-photo" data-initial="M"></div>
         <div class="artist-overlay">
           <p class="artist-name">MONSTERS kINC.</p>
@@ -1164,7 +1283,7 @@
         </div>
       </div>
 
-      <div class="artist-card" data-img="./images/la-monstera.jpg">
+      <div class="artist-card" data-img="./images/la-monstera.jpg" data-img-hover="./images/la-monstera-2.jpg">
         <div class="artist-photo" data-initial="L"></div>
         <div class="artist-overlay">
           <p class="artist-name">La Monstera</p>
@@ -1172,7 +1291,7 @@
         </div>
       </div>
 
-      <div class="artist-card" data-img="./images/marina-valmont.jpg">
+      <div class="artist-card" data-img="./images/marina-valmont.jpg" data-img-hover="./images/marina-valmont-2.jpg">
         <div class="artist-photo" data-initial="M"></div>
         <div class="artist-overlay">
           <p class="artist-name">Marina Valmont</p>
@@ -1493,8 +1612,7 @@
       <div class="ticket-card">
         <p class="ticket-name">Day Ticket</p>
         <p class="ticket-price">
-          <span class="from">from</span>
-          <sub>€</sub>[PRICE]
+          <sub>€</sub>45
         </p>
         <p class="ticket-desc">One day access — Saturday or Sunday. Choose your adventure.</p>
         <ul class="ticket-includes">
@@ -1503,14 +1621,13 @@
           <li>50+ exhibitors</li>
           <li>Panels, workshops, meet &amp; greets</li>
         </ul>
-        <a href="#" class="btn btn-outline">Buy Day Ticket</a>
+        <a href="https://www.eventbrite.ie/e/sx-festival-sx-expo-2026-berlin-tickets-1550925051579" target="_blank" rel="noopener" class="btn btn-outline">Buy Day Ticket</a>
       </div>
 
       <div class="ticket-card ticket-card--featured">
         <p class="ticket-name">2-in-1 Weekend</p>
         <p class="ticket-price">
-          <span class="from">from</span>
-          <sub>€</sub>[PRICE]
+          <sub>€</sub>80
         </p>
         <p class="ticket-desc">Both days. The full experience. The recommended choice.</p>
         <ul class="ticket-includes">
@@ -1519,14 +1636,13 @@
           <li>50+ exhibitors</li>
           <li>Grand Finale cocktail hour</li>
         </ul>
-        <a href="#" class="btn btn-primary">Buy Weekend Ticket</a>
+        <a href="https://www.eventbrite.ie/e/sx-festival-sx-expo-2026-berlin-tickets-1550925051579" target="_blank" rel="noopener" class="btn btn-primary">Buy Weekend Ticket</a>
       </div>
 
       <div class="ticket-card">
         <p class="ticket-name">Red Moon Party</p>
         <p class="ticket-price">
-          <span class="from">from</span>
-          <sub>€</sub>[PRICE]
+          <sub>€</sub>25
         </p>
         <p class="ticket-desc">Saturday night only. CAT MINT. Kylie Darling. A secret act. Until 2am.</p>
         <ul class="ticket-includes">
@@ -1535,7 +1651,7 @@
           <li>Ritual performance by Kylie Darling</li>
           <li>Secret act at midnight</li>
         </ul>
-        <a href="#" class="btn btn-red">Buy Party Ticket</a>
+        <a href="https://www.eventbrite.ie/e/sx-festival-sx-expo-2026-berlin-tickets-1550925051579" target="_blank" rel="noopener" class="btn btn-red">Buy Party Ticket</a>
       </div>
 
     </div>
@@ -1660,18 +1776,17 @@
       </a>
     </div>
 
-    <div class="venue-map">
-      <!--
-        Embedded Google Maps iframe.
-        Replace the src URL if needed — current coordinates: Köpenicker Str. 16, Berlin.
-      -->
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.4!2d13.4435!3d52.4985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84f27a9e3d929%3A0x6d1e6b7f2f3d4a5b!2sK%C3%B6penicker%20Str.%2016%2C%2010997%20Berlin!5e0!3m2!1sen!2sde!4v1683000000000!5m2!1sen!2sde"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Heeresbäckerei Berlin location"
-        allowfullscreen>
-      </iframe>
+    <div class="venue-media">
+      <img src="./images/heeresbaeckerei.png" alt="Heeresbäckerei Berlin" class="venue-photo">
+      <div class="venue-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.4!2d13.4435!3d52.4985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84f27a9e3d929%3A0x6d1e6b7f2f3d4a5b!2sK%C3%B6penicker%20Str.%2016%2C%2010997%20Berlin!5e0!3m2!1sen!2sde!4v1683000000000!5m2!1sen!2sde"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Heeresbäckerei Berlin location"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -1686,11 +1801,16 @@
       <a href="#" class="footer-logo">SX<span>festival</span></a>
 
       <div class="footer-socials">
-        <a href="https://instagram.com/sxfestival" target="_blank" rel="noopener"
-           class="social-link" aria-label="Instagram">Instagram</a>
-        <a href="https://sxtech.eu" target="_blank" rel="noopener"
-           class="social-link">sxtech.eu</a>
-        <a href="#tickets" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.4rem;">
+        <a href="https://instagram.com/sxfestival" target="_blank" rel="noopener" class="social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v2a6 6 0 0 1 6-3zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://sxtech.eu" target="_blank" rel="noopener" class="social-link">sxtech.eu</a>
+        <a href="https://www.eventbrite.ie/e/sx-festival-sx-expo-2026-berlin-tickets-1550925051579" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.4rem;">
           Get Tickets
         </a>
       </div>
@@ -1749,24 +1869,54 @@
     });
   });
 
-  /* ── Artist photos: swap in real images via data-img ──────────────── */
+  /* ── Artist photos & videos ───────────────────────────────────────── */
   /*
-   * If a .artist-card has data-img="./images/filename.jpg",
-   * and that file exists, it gets applied as the background image.
-   * The placeholder letter disappears automatically.
+   * data-img="./images/name.jpg"           — main photo (always shown)
+   * data-img-hover="./images/name-2.jpg"   — hover image
+   * data-video-hover="./videos/name.mp4"   — hover video (takes priority over hover image)
+   * Videos use preload="none" — zero download cost until first hover.
    */
-  document.querySelectorAll('.artist-card[data-img]').forEach(card => {
-    const src = card.dataset.img;
-    if (!src) return;
+  document.querySelectorAll('.artist-card').forEach(card => {
+    const src        = card.dataset.img;
+    const srcHover   = card.dataset.imgHover;
+    const srcVideo   = card.dataset.videoHover;
+    const photo      = card.querySelector('.artist-photo');
+    const overlay    = card.querySelector('.artist-overlay');
 
-    const photo = card.querySelector('.artist-photo');
-    const img = new Image();
-    img.onload = () => {
-      photo.style.backgroundImage = `url('${src}')`;
-      photo.classList.add('has-image');
-    };
-    // If image fails to load, placeholder letter stays visible
-    img.src = src;
+    if (src) {
+      const img = new Image();
+      img.onload = () => {
+        photo.style.backgroundImage = `url('${src}')`;
+        photo.classList.add('has-image');
+      };
+      img.src = src;
+    }
+
+    if (srcVideo) {
+      const video = document.createElement('video');
+      video.className = 'artist-video-hover';
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.preload = 'metadata';
+      video.src = srcVideo;
+      card.insertBefore(video, overlay);
+
+      card.addEventListener('mouseenter', () => {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+
+    } else if (srcHover) {
+      const hoverDiv = document.createElement('div');
+      hoverDiv.className = 'artist-photo-hover';
+      card.insertBefore(hoverDiv, overlay);
+
+      const img = new Image();
+      img.onload = () => { hoverDiv.style.backgroundImage = `url('${srcHover}')`; };
+      img.src = srcHover;
+    }
   });
 
   /* ── Sticky nav: add border on scroll ─────────────────────────────── */
