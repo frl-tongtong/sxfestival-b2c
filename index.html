@@ -311,6 +311,46 @@
       .hero-stat-divider { display: none; }
     }
 
+    .hero-funnel {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-funnel-label {
+      font-family: var(--font-heading);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .hero-funnel-link {
+      font-family: var(--font-heading);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      padding-bottom: .1rem;
+      transition: color .2s, border-color .2s;
+    }
+    .hero-funnel-link:hover {
+      color: var(--yellow);
+      border-color: var(--yellow);
+    }
+
+    .hero-funnel-sep {
+      width: 1px;
+      height: .9rem;
+      background: var(--grey);
+      opacity: .4;
+    }
+
     /* ═══════════════════════════════════════════════════════════════════
        TICKER
        ═══════════════════════════════════════════════════════════════════ */
@@ -1139,6 +1179,13 @@
         <span class="hero-stat-label">Creators Attending</span>
       </div>
     </div>
+
+    <div class="hero-funnel">
+      <span class="hero-funnel-label">Not a visitor?</span>
+      <a href="https://sxtech.eu/exhibitors-b2b/" target="_blank" rel="noopener" class="hero-funnel-link">Exhibitors &amp; Brands →</a>
+      <div class="hero-funnel-sep"></div>
+      <a href="https://sxtech.eu/creators/" target="_blank" rel="noopener" class="hero-funnel-link">Creators &amp; Performers →</a>
+    </div>
   </div>
 </section>
 
@@ -1778,18 +1825,6 @@
         ask before touching, respect every no, and look after each other. A trained
         awareness team is present throughout the venue and event. Anyone who does not
         respect these principles will be removed without refund.
-      </div>
-    </div>
-
-    <div class="faq-item" role="listitem">
-      <button class="faq-question" aria-expanded="false">
-        Can I attend as a couple or group?
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-answer">
-        Absolutely. Many people come with a partner, a friend, or a group. We offer
-        a 2-in-1 weekend ticket which is designed exactly for this. Each person in
-        your group needs their own ticket.
       </div>
     </div>
 
