@@ -618,6 +618,107 @@
     .artist-role--perf  { color: var(--red); }
 
     /* ═══════════════════════════════════════════════════════════════════
+       BRANDS & EXHIBITORS
+       ═══════════════════════════════════════════════════════════════════ */
+    .brands {
+      padding: 6rem var(--gutter);
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .brands-header { margin-bottom: 3rem; }
+
+    .brand-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 640px) {
+      .brand-categories { grid-template-columns: 1fr; }
+    }
+
+    .brand-category {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+
+    .brand-category-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--bg-card-2);
+      transition: transform .5s ease;
+    }
+    .brand-category:hover .brand-category-bg { transform: scale(1.04); }
+
+    .brand-category-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.15) 60%, transparent 100%);
+    }
+
+    .brand-category-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem;
+      z-index: 1;
+    }
+
+    .brand-category-label {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: .4rem;
+    }
+
+    .brand-category-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .brands-logo-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .logo-item {
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.75rem 1.5rem;
+      aspect-ratio: 2/1;
+      transition: background .2s;
+    }
+    .logo-item:hover { background: var(--bg-card-2); }
+
+    .logo-item img {
+      max-width: 100%;
+      max-height: 44px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: .55;
+      transition: opacity .2s;
+    }
+    .logo-item:hover img { opacity: 1; }
+
+    /* ═══════════════════════════════════════════════════════════════════
        PROGRAMME HIGHLIGHTS
        ═══════════════════════════════════════════════════════════════════ */
     .programme {
@@ -1402,6 +1503,66 @@
 
     </div>
   </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     BRANDS & EXHIBITORS
+     ══════════════════════════════════════════════════════════════════════ -->
+<section class="brands" id="brands" aria-labelledby="brands-title">
+
+  <div class="brands-header">
+    <p class="label">The Expo</p>
+    <h2 class="section-title" id="brands-title">50+<br>Brands</h2>
+  </div>
+
+  <!--
+    ── CATEGORY CARDS ───────────────────────────────────────────────────
+    Upload images named: brand-fashion.jpg · brand-tech.jpg · brand-knowledge.jpg
+    ─────────────────────────────────────────────────────────────────── -->
+  <div class="brand-categories">
+
+    <div class="brand-category">
+      <div class="brand-category-bg" style="background-image:url('./images/category-fashion.jpeg')"></div>
+      <div class="brand-category-overlay"></div>
+      <div class="brand-category-content">
+        <p class="brand-category-label">Explore</p>
+        <h3 class="brand-category-title">Fashion</h3>
+      </div>
+    </div>
+
+    <div class="brand-category">
+      <div class="brand-category-bg" style="background-image:url('./images/category-tech.jpeg')"></div>
+      <div class="brand-category-overlay"></div>
+      <div class="brand-category-content">
+        <p class="brand-category-label">Explore</p>
+        <h3 class="brand-category-title">Tech</h3>
+      </div>
+    </div>
+
+    <div class="brand-category">
+      <div class="brand-category-bg" style="background-image:url('./images/category-knowledge.jpeg')"></div>
+      <div class="brand-category-overlay"></div>
+      <div class="brand-category-content">
+        <p class="brand-category-label">Explore</p>
+        <h3 class="brand-category-title">Knowledge</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!--
+    ── LOGO WALL ────────────────────────────────────────────────────────
+    Add each brand as: <div class="logo-item"><img src="./images/brand-[name].jpg" alt="[Brand]"></div>
+    Logos are displayed white on dark background automatically.
+    ─────────────────────────────────────────────────────────────────── -->
+  <div class="brands-logo-header">
+    <p class="label">Exhibitors</p>
+  </div>
+  <div class="logo-wall">
+    <!-- Brand logos will go here -->
+  </div>
+
 </section>
 
 
