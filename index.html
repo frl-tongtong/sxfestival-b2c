@@ -733,106 +733,56 @@
 
     .programme-header { margin-bottom: 3rem; }
 
-    .day-tabs {
+    /* ── Highlight cloud ── */
+    .highlights-cloud {
       display: flex;
-      gap: 0;
-      margin-bottom: 2.5rem;
-      border-bottom: 2px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1.2rem 1.8rem;
+      justify-content: center;
+      align-items: center;
+      max-width: 880px;
+      margin: 3rem auto 3.5rem;
+      padding: 0 1rem;
+      line-height: 1.2;
     }
 
-    .day-tab {
+    .hl-artist {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: var(--yellow);
+    }
+    .hl-artist .hl-name {
       font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--grey);
-      padding: .8rem 2rem;
-      border: none;
-      background: none;
-      cursor: pointer;
-      position: relative;
-      transition: color .2s;
-    }
-    .day-tab::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0; right: 0;
-      height: 2px;
-      background: var(--yellow);
-      transform: scaleX(0);
-      transition: transform .2s;
-    }
-    .day-tab.active { color: var(--white); }
-    .day-tab.active::after { transform: scaleX(1); }
-
-    .day-content { display: none; }
-    .day-content.active { display: block; }
-
-    .stage-section { margin-bottom: 2.5rem; }
-
-    .stage-label {
-      font-family: var(--font-heading);
-      font-size: .75rem;
       font-weight: 800;
-      letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--grey);
-      padding-bottom: .75rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1rem;
+      letter-spacing: .06em;
     }
-
-    .session-list { list-style: none; }
-
-    .session-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1rem;
-      padding: .9rem 0;
-      border-bottom: 1px solid rgba(255,255,255,.04);
-      align-items: start;
-    }
-    .session-item:last-child { border-bottom: none; }
-
-    .session-time {
-      font-family: var(--font-heading);
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--grey);
-      padding-top: .1rem;
-    }
-
-    .session-title {
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    .session-speaker {
-      font-size: .78rem;
-      color: var(--grey-light);
+    .hl-artist .hl-meta {
+      font-size: .65em;
+      opacity: .5;
+      letter-spacing: .12em;
+      text-transform: uppercase;
       margin-top: .2rem;
     }
+    .hl-xl .hl-name { font-size: 3rem; }
+    .hl-lg .hl-name { font-size: 1.8rem; }
+    .hl-md .hl-name { font-size: 1.15rem; }
+    .hl-sm .hl-name { font-size: .88rem; }
 
-    .session-type {
-      display: inline-block;
-      font-size: .6rem;
-      font-weight: 700;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      padding: .15rem .5rem;
-      background: var(--bg-card-2);
-      color: var(--grey-light);
-      margin-top: .35rem;
+    .hl-keyword {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.7);
+      white-space: nowrap;
+      font-family: var(--font-heading);
     }
-    .session-type--keynote   { background: var(--yellow); color: var(--bg); }
-    .session-type--panel     { background: var(--bg-card-2); color: var(--grey-light); }
-    .session-type--workshop  { background: #1a2200; color: var(--yellow); }
-    .session-type--dj        { background: var(--red-dark); color: var(--red); }
-    .session-type--performance { background: var(--red-dark); color: var(--red); }
-    .session-type--meet      { background: #0d1a00; color: #aacc00; }
+    .hl-keyword.hl-lg { padding: .6rem 1.6rem; font-size: 1.05rem; color: rgba(255,255,255,.9); border-color: rgba(255,255,255,.3); }
+    .hl-keyword.hl-md { padding: .5rem 1.2rem; font-size: .9rem; }
+    .hl-keyword.hl-sm { padding: .35rem .9rem; font-size: .75rem; opacity: .65; }
 
     /* ═══════════════════════════════════════════════════════════════════
        TICKETS
@@ -1589,219 +1539,73 @@
      ══════════════════════════════════════════════════════════════════════ -->
 <section class="programme" id="programme" aria-labelledby="programme-title">
   <div class="programme-header">
-    <p class="label">Schedule</p>
-    <h2 class="section-title" id="programme-title">Programme<br>Highlights</h2>
+    <p class="label">27–28 June · Heeresbäckerei</p>
+    <h2 class="section-title" id="programme-title">Highlights</h2>
   </div>
 
-  <div class="day-tabs" role="tablist">
-    <button class="day-tab active" role="tab" aria-selected="true"
-            aria-controls="day1" data-day="1">
-      Saturday 27 June
-    </button>
-    <button class="day-tab" role="tab" aria-selected="false"
-            aria-controls="day2" data-day="2">
-      Sunday 28 June
-    </button>
+  <div class="highlights-cloud">
+
+    <div class="hl-artist hl-xl">
+      <span class="hl-name">CAT MINT</span>
+      <span class="hl-meta">Sat · DJ Set · 19:00</span>
+    </div>
+
+    <div class="hl-keyword hl-lg">Red Moon Party</div>
+
+    <div class="hl-artist hl-lg">
+      <span class="hl-name">Susan Bratton</span>
+      <span class="hl-meta">Sun · Keynote · 12:10</span>
+    </div>
+
+    <div class="hl-keyword hl-md">Rope Garden</div>
+
+    <div class="hl-artist hl-lg">
+      <span class="hl-name">MONSTERS kINC.</span>
+      <span class="hl-meta">Sat · Live Show · 21:30</span>
+    </div>
+
+    <div class="hl-keyword hl-sm">Sober Sex Panel</div>
+
+    <div class="hl-artist hl-md">
+      <span class="hl-name">ANNIKE EKINA</span>
+      <span class="hl-meta">Sat · DJ · 17:40</span>
+    </div>
+
+    <div class="hl-keyword hl-lg">Non Monogamy Without the Filter</div>
+
+    <div class="hl-artist hl-md">
+      <span class="hl-name">La Monstera</span>
+      <span class="hl-meta">Sat · Rope Workshop · 13:30</span>
+    </div>
+
+    <div class="hl-keyword hl-md">Power, Control &amp; Consent</div>
+
+    <div class="hl-artist hl-md">
+      <span class="hl-name">Kylie Darling</span>
+      <span class="hl-meta">Sat · Ritual · 18:00</span>
+    </div>
+
+    <div class="hl-keyword hl-md">Secret Act · Midnight</div>
+
+    <div class="hl-artist hl-sm">
+      <span class="hl-name">Catherine DeNoire</span>
+      <span class="hl-meta">Sat · Opening · 12:00</span>
+    </div>
+
+    <div class="hl-keyword hl-sm">Sound Bath</div>
+
+    <div class="hl-keyword hl-sm">Live Coded Intimacy</div>
+
+    <div class="hl-keyword hl-sm">Beyond Restraints</div>
+
+    <div class="hl-keyword hl-sm">Exploring Arousal</div>
+
+    <div class="hl-keyword hl-sm">Afterglow</div>
+
   </div>
 
-  <!-- DAY 1 -->
-  <div class="day-content active" id="day1" role="tabpanel">
 
-    <div class="stage-section">
-      <p class="stage-label">Daytime</p>
-      <ul class="session-list">
-        <li class="session-item">
-          <span class="session-time">12:00</span>
-          <div>
-            <p class="session-title">Stage Opening with Catherine DeNoire</p>
-            <span class="session-type session-type--keynote">Opening</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">12:30</span>
-          <div>
-            <p class="session-title">Sober Sex – Building Confidence and Connection Again</p>
-            <p class="session-speaker">Dr. Maddie Sin · Miss Masochist · Muse Sacred</p>
-            <span class="session-type session-type--panel">Panel</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">13:30</span>
-          <div>
-            <p class="session-title">La Monstera Rope Garden: Tension, Trust &amp; Technique</p>
-            <p class="session-speaker">La Monstera · Model: Icon Fetish</p>
-            <span class="session-type session-type--workshop">Rope Workshop</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">15:30</span>
-          <div>
-            <p class="session-title">Your Parents Had More Sex Than You – Creators React to the Data</p>
-            <p class="session-speaker">Harpy Fatale · ECCY · Trixie Fox · Hannah Bacon + more</p>
-            <span class="session-type session-type--panel">Quiz Panel</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">15:45</span>
-          <div>
-            <p class="session-title">Exploring Arousal Beyond the Physical</p>
-            <p class="session-speaker">Marie Morgenstern (Moonlight Society)</p>
-            <span class="session-type session-type--workshop">Immersive Workshop</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">16:30</span>
-          <div>
-            <p class="session-title">Creators Meet &amp; Greet</p>
-            <p class="session-speaker">Marina Valmont (Naked News)</p>
-            <span class="session-type session-type--meet">Meet &amp; Greet</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">17:40</span>
-          <div>
-            <p class="session-title">ANNIKE EKINA Meet &amp; Greet + DJ Set</p>
-            <p class="session-speaker">ANNIKE EKINA</p>
-            <span class="session-type session-type--dj">DJ · Creator</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="stage-section">
-      <p class="stage-label">Red Moon Party</p>
-      <ul class="session-list">
-        <li class="session-item">
-          <span class="session-time">18:00</span>
-          <div>
-            <p class="session-title">Red Moon Prelude — Ritual Performance</p>
-            <p class="session-speaker">Kylie Darling</p>
-            <span class="session-type session-type--performance">Performance</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">19:00</span>
-          <div>
-            <p class="session-title">Red Moon Party Ignition</p>
-            <p class="session-speaker">CAT MINT</p>
-            <span class="session-type session-type--dj">DJ Set</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">21:30</span>
-          <div>
-            <p class="session-title">Red Moon Heatwave Show</p>
-            <p class="session-speaker">MONSTERS kINC. &amp; CAT MINT</p>
-            <span class="session-type session-type--performance">Live Show</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">00:00</span>
-          <div>
-            <p class="session-title">Secret Act: Void Restraint</p>
-            <p class="session-speaker">Identity revealed at the door</p>
-            <span class="session-type session-type--performance">Secret Act · Midnight</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">00:00–02:00</span>
-          <div>
-            <p class="session-title">Afterglow</p>
-            <span class="session-type session-type--dj">Party</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-  </div><!-- /day1 -->
-
-  <!-- DAY 2 -->
-  <div class="day-content" id="day2" role="tabpanel">
-
-    <div class="stage-section">
-      <p class="stage-label">Talks &amp; Panels</p>
-      <ul class="session-list">
-        <li class="session-item">
-          <span class="session-time">12:10</span>
-          <div>
-            <p class="session-title">Crossing the Gasm Chasm – Activating and Expanding Your Female Orgasmic Potential</p>
-            <p class="session-speaker">Susan Bratton (Better Lover)</p>
-            <span class="session-type session-type--keynote">Keynote</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">13:00</span>
-          <div>
-            <p class="session-title">Non Monogamy Without the Filter</p>
-            <p class="session-speaker">Ally Iseman · Courtney Boyer · Susan Bratton · Reed Amber</p>
-            <span class="session-type session-type--panel">Panel</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">15:40</span>
-          <div>
-            <p class="session-title">Your Parents Had More Sex Than You – Creators React to the Data</p>
-            <p class="session-speaker">Marius Rohde · ECCY · Trixie Fox + more · Hosted by Ana Ornelas</p>
-            <span class="session-type session-type--panel">Quiz Panel</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">16:15</span>
-          <div>
-            <p class="session-title">Power, Control &amp; Consent: Redefining Dominance in Modern Culture</p>
-            <p class="session-speaker">Miss Swan · Vita Voliton · La Monstera · Goddess Alanis · Fetisch Barbie</p>
-            <span class="session-type session-type--panel">Panel</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="stage-section">
-      <p class="stage-label">Kinky Garden</p>
-      <ul class="session-list">
-        <li class="session-item">
-          <span class="session-time">13:00</span>
-          <div>
-            <p class="session-title">Frequency of Sexuality — Sound Bath</p>
-            <span class="session-type session-type--workshop">Sound Bath</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">14:00</span>
-          <div>
-            <p class="session-title">Beyond Restraints – Exploring Deeper Forms of Intimacy</p>
-            <span class="session-type session-type--workshop">Experience</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">14:30</span>
-          <div>
-            <p class="session-title">Live Coded Intimacy</p>
-            <p class="session-speaker">Sabrina Verhage &amp; Nikilia</p>
-            <span class="session-type session-type--workshop">Live Interactive Experience</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">15:15</span>
-          <div>
-            <p class="session-title">Performance</p>
-            <p class="session-speaker">Charlie Bouquett</p>
-            <span class="session-type session-type--performance">Performance</span>
-          </div>
-        </li>
-        <li class="session-item">
-          <span class="session-time">15:45</span>
-          <div>
-            <p class="session-title">Live Music Performance with DJ</p>
-            <span class="session-type session-type--dj">Live Music</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-  </div><!-- /day2 -->
-
-  <div style="margin-top:3rem; text-align:center;">
+  <div style="text-align:center; margin-top: 1rem;">
     <a href="https://sxtech.eu/program/" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1.2rem; padding:1.1rem 3rem;">
       See Full Programme →
     </a>
@@ -2069,23 +1873,6 @@
      JAVASCRIPT
      ══════════════════════════════════════════════════════════════════════ -->
 <script>
-  /* ── Tab switching for programme ──────────────────────────────────── */
-  document.querySelectorAll('.day-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const day = tab.dataset.day;
-
-      document.querySelectorAll('.day-tab').forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
-
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      document.getElementById('day' + day).classList.add('active');
-    });
-  });
-
   /* ── FAQ accordion ────────────────────────────────────────────────── */
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
